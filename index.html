@@ -1,0 +1,1871 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jireh Foundation - Empowering lives, Communities, and missions Worldwide</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-blue: #1e40af;
+            --secondary-blue: #3b82f6;
+            --light-blue: #f2f4f8;
+            --gold: #f59e0b;
+            --light-gold: #fef3c7;
+            --white: #ffffff;
+            --off-white: #f8fafc;
+            --text-dark: #1f2937;
+            --text-light: #6b7280;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            scroll-behavior: smooth;
+        }
+
+        /* Header Styles */
+        .header {
+            background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue));
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center; /* Vertically centers items */
+            justify-content: space-between; /* Optional: space between logo and menu */
+        }
+
+        .nav-container {
+            display: flex;
+            flex-direction: row;      /* Arrange items horizontally */
+            align-items: center;      /* Vertically center items */
+            justify-content: space-between;
+            width: 100%;
+            padding: 0 2rem;
+            /* Remove any extra margins or paddings that break the line */
+        }
+
+        .logo {
+            margin: 0;
+            padding: 0;
+            /* Keep logo inline */
+            font-size: 1.5rem; /* Reduced from 2.2rem */
+            font-weight: bold;
+            cursor: pointer;
+            color: var(--gold);
+            transition: color 0.3s ease;
+            margin-right: auto;
+            margin-left: 1em; /* 1em = roughly the width of an 'm' character */
+        }
+
+        .logo::after {
+            content:none;
+            font-size: 3.6rem; /* Reduced from 2.2rem */
+            color: var(--white);
+            margin-left: 0; /* Remove negative margin */
+        }
+
+        .nav-menu {
+            display: flex;
+            flex-direction: row;      /* Ensure menu items are horizontal */
+            align-items: center;
+            gap: 0.2rem;              /* Space between menu items */
+            margin: 0;
+            padding: 0;
+            list-style: none;         /* Remove dots (bullets) from menu items */
+        }
+
+        .nav-item {
+            cursor: pointer;
+            padding: 0.5rem 0.75rem; /* Reduced horizontal padding from 1rem to 0.75rem */
+            border-radius: 40px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-item:hover, .nav-item.active {
+            background-color: rgba(255,255,255,0.1);
+            transform: translateY(-2px);
+        }
+
+        .mobile-menu {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .mobile-menu span {
+            width: 25px;
+            height: 2px;
+            background: white;
+            margin: 3px 0;
+            transition: 0.3s;
+        }
+        /* Main Content */
+        .main-content {
+            margin-top: 80px;
+        }
+
+        .page {
+            display: none;
+            min-height: calc(100vh - 80px);
+            padding: 2rem 0;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease;
+        }
+
+        .page.active {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Hero Section */
+        hero {
+    background: linear-gradient(rgba(30, 64, 175, 0.8), rgba(63, 88, 167, 0.6));
+    background-size: cover;
+    background-position: center;
+    color: #fff;
+    text-align: center;
+    padding: 8rem 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+        .hero-content {
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            color: var(--gold);
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 0.5rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: var(--gold);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #d97706;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .btn-secondary:hover {
+            background: white;
+            color: var(--primary-blue);
+            transform: translateY(-3px);
+        }
+
+        /* Content Sections */
+        .content-section {
+            padding: 4rem 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: var(--primary-blue);
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--gold);
+            border-radius: 2px;
+        }
+
+        .grid {
+            display: grid;
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .grid-2 {
+            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+        }
+
+        .grid-3 {
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        }
+
+        .grid-4 {
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        }
+
+        .card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            border-top: 4px solid var(--gold);
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+
+        .card-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--light-blue);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            font-size: 2rem;
+            color: var(--primary-blue);
+        }
+
+        .card h3 {
+            text-align: center;
+            color: var(--primary-blue);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .stats-section {
+            background: var(--light-blue);
+            padding: 4rem 0;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            text-align: center;
+        }
+
+        .stat-item {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: bold;
+            color: var(--gold);
+            display: block;
+        }
+
+        .stat-label {
+            color: var(--text-light);
+            font-size: 1.1rem;
+        }
+
+        /* About Section Specific */
+        .about-intro {
+            background: var(--off-white);
+            padding: 3rem;
+            border-radius: 15px;
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+
+        .bible-verse {
+            font-style: italic;
+            color: var(--gold);
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            font-weight: 500;
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .value-item {
+            text-align: center;
+            padding: 1.5rem;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .value-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .value-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Testimonials */
+        .testimonial {
+            background: var(--off-white);
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+        }
+
+        .testimonial-author {
+            font-weight: bold;
+            color: var(--primary-blue);
+        }
+
+        /* Contact Form */
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+            color: var(--primary-blue);
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--secondary-blue);
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--text-dark);
+            color: white;
+            padding: 3rem 0 1rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            color: var(--gold);
+            margin-bottom: 1rem;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.5rem;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section ul li:hover {
+            color: var(--gold);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid #374151;
+            color: var(--text-light);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: var(--primary-blue);
+                flex-direction: column;
+                padding: 1rem;
+                box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            }
+
+            .nav-menu.active {
+                display: flex;
+            }
+
+            .mobile-menu {
+                display: flex;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .grid-2 {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .btn {
+                width: 250px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 1rem;
+            }
+
+            .hero {
+                padding: 4rem 0;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+
+        .contact-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 10px;
+    max-width: 600px;
+    max-height: 80vh;
+    overflow-y: auto;
+    position: relative;
+}
+
+.close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 24px;
+    cursor: pointer;
+    color: #666;
+}
+
+.close-button:hover {
+    color: #000;
+}
+
+.donate-nav {
+    background: var(--gold);
+    color: #fff !important;
+    font-weight: bold;
+    border: 2px solid var(--gold);
+    box-shadow: 0 2px 8px rgba(245, 158, 11, 0.15);
+    transition: background 0.3s, color 0.3s;
+}
+.donate-nav:hover, .donate-nav.active {
+    background: #d97706;
+    color: #fff !important;
+}
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav-container">
+            <div class="logo" onclick="showPage('home')" style="margin-left: -20px; margin-right: 0px;">
+    <img src="imageL2D2 _tcropd.jpg" alt="Jireh Foundation Logo" style="height: 70px; vertical-align: middle; margin-right: -4px;">
+    Jireh Foundation
+</div>
+            <ul class="nav-menu" id="nav-menu">
+                <li class="nav-item active" onclick="showPage('home')">Home</li>
+                <li class="nav-item" onclick="showPage('about')">Who We Are</li>
+                <li class="nav-item" onclick="showPage('programs')">What We Do</li>
+                <li class="nav-item" onclick="showPage('impact')">Our Impact</li>
+                <li class="nav-item" onclick="showPage('stories')">Stories</li>
+                <li class="nav-item" onclick="showPage('get-involved')">Get Involved</li>
+                <li class="nav-item" onclick="showPage('latest')">Latest</li>
+                <li class="nav-item donate-nav" onclick="showPage('donate')">Donate</li>
+            </ul>
+            <div class="mobile-menu" onclick="toggleMobileMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Home Page -->
+        <div id="home" class="page active">
+            <section class="hero">
+    <div class="hero-content">
+        <style>
+            @keyframes zoom {
+                0% { transform: scale(1); }
+                50% { transform: scale(1.2); }
+                100% { transform: scale(1); }
+            }
+        </style>
+        <p style="font-size: medium; text-align: center; margin-top: 50px; font-weight: bold; color: green; animation: zoom 2s infinite ease-in-out;">
+            Empowering lives, communities and missions worldwide through education, skills training, social care, and financial assistance
+        </p>
+        <div class="cta-buttons" style="flex-direction: column; align-items: center;">
+            <div class="slideshow-container" style="position: relative; max-width: 70%; width: 70%; margin-bottom: 0rem;">
+                <img class="slide-img" src="image1.jpg" alt="Slide 1" style="width:100%; height:400px; object-fit:cover; border-radius: 16px; display: block;">
+                <img class="slide-img" src="photo2.jpg" alt="Slide 2" style="width:100%; height:400px; object-fit:cover; border-radius: 16px; display: none;">
+                <img class="slide-img" src="imagel2d3 (2).jpg" alt="Slide 3" style="width:100%; height:400px; object-fit:cover; border-radius: 16px; display: none;">
+                <img class="slide-img" src="imagel2d4.jpg" alt="Slide 4" style="width:100%; height:400px; object-fit:cover; border-radius: 16px; display: none;">
+                <a class="prev" style="position:absolute;top:50%;left:20px;transform:translateY(-50%);font-size:2rem;color:white;text-shadow:0 2px 8px #000;cursor:pointer;user-select:none;z-index:2;" onclick="plusSlides(-1)">&#10094;</a>
+                <a class="next" style="position:absolute;top:50%;right:20px;transform:translateY(-50%);font-size:2rem;color:white;text-shadow:0 2px 8px #000;cursor:pointer;user-select:none;z-index:2;" onclick="plusSlides(1)">&#10095;</a>
+                <div style="position:absolute;bottom:18px;left:50%;transform:translateX(-50%);display:flex;gap:8px;">
+                    <span class="dot" onclick="currentSlide(1)" style="height:12px;width:12px;background:#fff;border-radius:50%;display:inline-block;opacity:0.7;cursor:pointer;"></span>
+                    <span class="dot" onclick="currentSlide(2)" style="height:12px;width:12px;background:#fff;border-radius:50%;display:inline-block;opacity:0.7;cursor:pointer;"></span>
+                    <span class="dot" onclick="currentSlide(3)" style="height:12px;width:12px;background:#fff;border-radius:50%;display:inline-block;opacity:0.7;cursor:pointer;"></span>
+                    <span class="dot" onclick="currentSlide(4)" style="height:12px;width:12px;background:#fff;border-radius:50%;display:inline-block;opacity:0.7;cursor:pointer;"></span>
+                </div>
+            </div>
+            <div class="cta-buttons" style="margin-top: 1rem; text-align: center;">
+            <button class="btn btn-primary" onclick="showPage('about')">Learn More</button>
+            <button class="btn btn-primary" onclick="showPage('get-involved')">Join Us in Transforming Lives</button>
+            </div>
+        </div>
+        <script>
+        let slideIndex = 1;
+        showSlides(slideIndex);
+
+        function plusSlides(n) {
+            showSlides(slideIndex += n);
+        }
+        function currentSlide(n) {
+            showSlides(slideIndex = n);
+        }
+        function showSlides(n) {
+            let i;
+            const slides = document.getElementsByClassName("slide-img");
+            const dots = document.getElementsByClassName("dot");
+            if (n > slides.length) {slideIndex = 1}
+            if (n < 1) {slideIndex = slides.length}
+            for (i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+            for (i = 0; i < dots.length; i++) {
+                dots[i].style.opacity = "0.7";
+                dots[i].style.background = "#fff";
+            }
+            slides[slideIndex-1].style.display = "block";
+            dots[slideIndex-1].style.opacity = "1";
+            dots[slideIndex-1].style.background = "#f59e0b";
+        }
+
+        // Optional: Auto-slide every 5 seconds
+        setInterval(function() {
+            plusSlides(1);
+        }, 5000);
+        </script>
+    </div>
+</section>
+
+            <section class="content-section">
+                <div class="container">
+                    <h2 class="section-title">Our Core Mission Areas</h2>
+                    <div class="grid grid-4">
+                        <div class="card fade-in">
+                            <div class="card-icon">⛪</div>
+                            <h3>Church Building & Support</h3>
+                            <p>Establishing and supporting churches worldwide to strengthen spiritual communities and provide spaces for worship, fellowship, and growth.</p>
+                        </div>
+                        <div class="card fade-in">
+                            <div class="card-icon">🎓</div>
+                            <h3>Educational Scholarships</h3>
+                            <p>Providing educational opportunities through scholarships, enabling individuals to pursue their dreams and break cycles of poverty.</p>
+                        </div>
+                        <div class="card fade-in">
+                            <div class="card-icon">🏠</div>
+                            <h3>Orphanages & Hospices</h3>
+                            <p>Creating safe havens for vulnerable children and providing compassionate care for those in their final stages of life.</p>
+                        </div>
+                        <div class="card fade-in">
+                            <div class="card-icon">💼</div>
+                            <h3>Business Microfinance</h3>
+                            <p>Empowering entrepreneurs and small business owners with financial credit to build sustainable livelihoods and strengthen communities.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="stats-section">
+                <div class="container">
+                    <h2 class="section-title" style="color: var(--primary-blue);">Our Global Impact</h2>
+                    <div class="stats-grid">
+                        <div class="stat-item fade-in">
+                            <span class="stat-number">150+</span>
+                            <span class="stat-label">Churches Supported</span>
+                        </div>
+                        <div class="stat-item fade-in">
+                            <span class="stat-number">2,500+</span>
+                            <span class="stat-label">Scholarships Awarded</span>
+                        </div>
+                        <div class="stat-item fade-in">
+                            <span class="stat-number">45</span>
+                            <span class="stat-label">Countries Reached</span>
+                        </div>
+                        <div class="stat-item fade-in">
+                            <span class="stat-number">12,000+</span>
+                            <span class="stat-label">Lives Transformed</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+        <!-- About Page -->
+        <div id="about" class="page">
+            <section class="content-section">
+                <div class="container">
+                    <h2 class="section-title">Who We Are</h2>                   
+                    <div class="about-intro fade-in">
+                        <p class="bible-verse">"And Abraham called the name of that place Jehovah-jireh: as it is said to this day, In the mount of the LORD it shall be provided." (Genesis 22:14 ERV)</p>
+                        <p>Jireh means "The Lord will provide" - reflecting our unwavering faith that God will provide for all our needs as we serve communities worldwide.</p>
+                    </div>
+                    <div class="grid grid-2">
+                        <div class="card fade-in">
+                            <h3>Our Mission</h3>
+                            <p>To empower communities worldwide by building and supporting churches, offering educational scholarships, establishing and supporting orphanages and hospices, and providing financial credit to small-scale businesses—all inspired by Christian principles of love, compassion, and service.</p>
+                        </div>
+                        <div class="card fade-in">
+                            <h3>Our Vision</h3>
+                            <p>To create thriving, resilient communities where every individual has access to spiritual growth, education, social support, and economic opportunities.</p>
+                        </div>
+                    </div>
+
+                    <div class="content-section">
+                        <h3 style="text-align: center; color: var(--primary-blue); margin-bottom: 2rem; font-size: 2rem;">Our Core Values</h3>
+                        <div class="values-grid">
+                            <div class="value-item fade-in">
+                                <div class="value-icon">✝️</div>
+                                <h4>Faith</h4>
+                                <p>Trusting in God's provision and guidance in all our endeavors.</p>
+                            </div>
+                            <div class="value-item fade-in">
+                                <div class="value-icon">🤝</div>
+                                <h4>Integrity</h4>
+                                <p>Operating with honesty, transparency, and ethical principles.</p>
+                            </div>
+                            <div class="value-item fade-in">
+                                <div class="value-icon">❤️</div>
+                                <h4>Compassion</h4>
+                                <p>Showing love and empathy to all those we serve.</p>
+                            </div>
+                            <div class="value-item fade-in">
+                                <div class="value-icon">💪</div>
+                                <h4>Empowerment</h4>
+                                <p>Enabling individuals and communities to reach their full potential.</p>
+                            </div>
+                            <div class="value-item fade-in">
+                                <div class="value-icon">📊</div>
+                                <h4>Accountability</h4>
+                                <p>Being responsible stewards of resources and transparent in our actions.</p>
+                            </div>
+                            <div class="value-item fade-in">
+                                <div class="value-icon">🙏</div>
+                                <h4>Service</h4>
+                                <p>Dedicating ourselves to serving others with humility and love.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Programs Page -->
+        <div id="programs" class="page">
+            <section class="content-section">
+                <div class="container">
+                    <h2 class="section-title">Our Programs</h2>
+                    
+                    <div class="grid grid-2">
+                        <div class="card fade-in">
+                            <div class="card-icon">⛪</div>
+                            <h3>Church Building & Support</h3>
+                            <p>We partner with local communities to construct new churches and renovate existing ones. Our support extends beyond construction to include leadership training, resource provision, and ongoing community development initiatives that strengthen the spiritual foundation of communities.</p>
+                            <ul style="margin-top: 1rem; padding-left: 1rem;">
+                                <li>• New church construction</li>
+                                <li>• Renovation and maintenance</li>
+                                <li>• Leadership training programs</li>
+                                <li>• Community outreach support</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="card fade-in">
+                            <div class="card-icon">🎓</div>
+                            <h3>Educational Scholarships</h3>
+                            <p>Education is the key to breaking cycles of poverty. We provide comprehensive scholarship programs covering tuition, books, and living expenses for deserving students from underprivileged backgrounds, enabling them to pursue primary, secondary, and tertiary education.</p>
+                            <ul style="margin-top: 1rem; padding-left: 1rem;">
+                                <li>• Primary school scholarships</li>
+                                <li>• Secondary education support</li>
+                                <li>• University and college funding</li>
+                                <li>• Vocational training programs</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="card fade-in">
+                            <div class="card-icon">🏠</div>
+                            <h3>Orphanages & Hospices</h3>
+                            <p>We establish and support safe, loving environments for orphaned children and provide dignified care for those in hospice care. Our facilities focus on holistic development, including education, healthcare, spiritual growth, and emotional support.</p>
+                            <ul style="margin-top: 1rem; padding-left: 1rem;">
+                                <li>• Orphanage establishment and support</li>
+                                <li>• Hospice care facilities</li>
+                                <li>• Healthcare and nutrition programs</li>
+                                <li>• Emotional and spiritual counseling</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="card fade-in">
+                            <div class="card-icon">💼</div>
+                            <h3>Business Microfinance</h3>
+                            <p>We empower entrepreneurs and small business owners with accessible microfinance solutions. Our program includes financial literacy training, business mentorship, and ongoing support to help create sustainable livelihoods and economic growth in communities.</p>
+                            <ul style="margin-top: 1rem; padding-left: 1rem;">
+                                <li>• Microloans for small businesses</li>
+                                <li>• Financial literacy training</li>
+                                <li>• Business mentorship programs</li>
+                                <li>• Market linkage support</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="cta-buttons" style="margin-top: 3rem; text-align: center;">
+                        <button class="btn btn-primary" onclick="showPage('get-involved')">Apply for Support</button>
+                        <button class="btn btn-primary" onclick="showPage('contact')">Learn More</button>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Impact Page -->
+        <div id="impact" class="page">
+            <section class="content-section">
+                <div class="container">
+                    <h2 class="section-title">Our Global Impact</h2>
+                    
+                    <div class="stats-section" style="background: var(--off-white); border-radius: 15px; margin-bottom: 3rem;">
+                        <div class="container">
+                            <div class="stats-grid">
+                                <div class="stat-item fade-in">
+                                    <span class="stat-number">150+</span>
+                                    <span class="stat-label">Churches Built & Supported</span>
+                                </div>
+                                <div class="stat-item fade-in">
+                                    <span class="stat-number">2,500+</span>
+                                    <span class="stat-label">Students Supported</span>
+                                </div>
+                                <div class="stat-item fade-in">
+                                    <span class="stat-number">18</span>
+                                    <span class="stat-label">Orphanages Established</span>
+                                </div>
+                                <div class="stat-item fade-in">
+                                    <span class="stat-number">850+</span>
+                                    <span class="stat-label">Businesses Funded</span>
+                                </div>
+                                <div class="stat-item fade-in">
+                                    <span class="stat-number">45</span>
+                                    <span class="stat-label">Countries Reached</span>
+                                </div>
+                                <div class="stat-item fade-in">
+                                    <span class="stat-number">12,000+</span>
+                                    <span class="stat-label">Lives Directly Impacted</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-3">
+                        <div class="card fade-in">
+                            <h3>Regional Presence</h3>
+                            <p><strong>Africa:</strong> 25 countries including Ghana, Nigeria, Kenya, Uganda, and South Africa.</p>
+                            <p><strong>Asia:</strong> 12 countries including India, Philippines, Cambodia, and Myanmar.</p>
+                            <p><strong>Americas:</strong> 8 countries including Haiti, Guatemala, and Brazil.</p>
+                        </div>
+                        
+                        <div class="card fade-in">
+                            <h3>Success Metrics</h3>
+                            <p><strong>95%</strong> of scholarship recipients complete their education successfully.</p>
+                            <p><strong>88%</strong> of funded businesses remain operational after 3 years.</p>
+                            <p><strong>100%</strong> of our orphanages meet international care standards.</p>
+                        </div>
+                        
+                        <div class="card fade-in">
+                            <h3>Community Transformation</h3>
+                            <p>Over <strong>50 communities</strong> have achieved significant improvements in education rates, economic stability, and spiritual growth through our integrated approach.</p>
+                            <p>Our holistic model creates lasting change that extends beyond immediate beneficiaries.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Stories Page -->
+        <div id="stories" class="page">
+            <section class="content-section">
+                <div class="container">
+                    <h2 class="section-title">Stories of Transformation</h2>
+                    
+                    <div class="grid grid-2">
+                        <div class="testimonial fade-in">
+                            <p class="testimonial-text">"Jireh Foundation changed my life completely. With their scholarship, I was able to complete my medical degree and now serve my community as a doctor. I am forever grateful for their belief in my potential."</p>
+                            <p class="testimonial-author">- Dr. Mary Asante, Ghana</p>
+                        </div>
+                        
+                        <div class="testimonial fade-in">
+                            <p class="testimonial-text">"Our small tailoring business was struggling until Jireh Foundation provided us with a microloan. Today, we employ 15 people and have expanded to three locations. God truly provides through His people."</p>
+                            <p class="testimonial-author">- Sarah & James Ochieng, Kenya</p>
+                        </div>
+                        
+                        <div class="testimonial fade-in">
+                            <p class="testimonial-text">"The church Jireh Foundation helped us build has become the heart of our community. It's not just a place of worship, but a center for education, healthcare outreach, and community gatherings."</p>
+                            <p class="testimonial-author">- Pastor Emmanuel Tetteh, Rural Ghana</p>
+                        </div>
+                        
+                        <div class="testimonial fade-in">
+                            <p class="testimonial-text">"Living in the Jireh orphanage gave me hope when I had none. The staff became my family, and their love and support helped me become the teacher I am today. Now I'm giving back to other children."</p>
+                            <p class="testimonial-author">- Grace Mwangi, Former Orphan, Now Teacher</p>
+                        </div>
+                        
+                        <div class="testimonial fade-in">
+                            <p class="testimonial-text">"The hospice care provided by Jireh Foundation ensured my mother's final days were filled with dignity, comfort, and spiritual peace. Their compassionate care was a true blessing to our family."</p>
+                            <p class="testimonial-author">- David Amponsah, Son of Hospice Patient</p>
+                        </div>
+                        
+                        <div class="testimonial fade-in">
+                            <p class="testimonial-text">"From a small farming community to having our own church and school, Jireh Foundation's holistic approach has transformed our entire village. Our children now have hope and opportunities."</p>
+                            <p class="testimonial-author">- Chief Kwaku Boateng, Akyem Community</p>
+                        </div>
+                    </div>
+                    
+                    <div class="content-section">
+                        <div class="card fade-in" style="text-align: center; background: var(--light-blue);">
+                            <h3>Share Your Story</h3>
+                            <p>Have you been impacted by Jireh Foundation's work? We'd love to hear your story and share how God is working through our ministry.</p>
+                            <button class="btn btn-primary" onclick="showPage('contact')" style="margin-top: 1rem;">Share Your Story</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Get Involved Page -->
+        <div id="get-involved" class="page">
+            <section class="content-section">
+                <div class="container">
+                    <h2 class="section-title">Get Involved</h2>
+                    
+                    <div class="grid grid-3">
+                        <div class="card fade-in">
+                            <div class="card-icon">💝</div>
+                            <h3>Make a Donation</h3>
+                            <p>Your generous donations help us continue our mission of transforming lives worldwide. Every contribution, big or small, makes a difference.</p>
+                            <div style="margin-top: 1rem;">
+                                <div class="form-group">
+                                    <label>Donation Amount:</label>
+                                    <select>
+                                        <option>Select Amount</option>
+                                        <option>$25 - Sponsor a child's meal for a month</option>
+                                        <option>$50 - Provide school supplies for 5 children</option>
+                                        <option>$100 - Support a small business startup</option>
+                                        <option>$250 - Fund a scholarship for one semester</option>
+                                        <option>$500 - Support church construction materials</option>
+                                        <option>$1000 - Fund a year of education for one student</option>
+                                        <option>Custom Amount</option>
+                                    </select>
+                                </div>
+                                <button class="btn btn-primary" style="width: 100%;">Donate Now</button>
+                            </div>
+                        </div>
+                        
+                        <div class="card fade-in">
+                            <div class="card-icon">🤝</div>
+                            <h3>Volunteer</h3>
+                            <p>Join our team of dedicated volunteers and make a direct impact in communities around the world. We have opportunities both locally and internationally.</p>
+                            <div style="margin-top: 1rem;">
+                                <div class="form-group">
+                                    <label>Areas of Interest:</label>
+                                    <select>
+                                        <option>Select Area</option>
+                                        <option>Teaching & Education</option>
+                                        <option>Healthcare & Medical</option>
+                                        <option>Construction & Engineering</option>
+                                        <option>Business & Finance</option>
+                                        <option>Childcare & Social Work</option>
+                                        <option>Administrative Support</option>
+                                        <option>Fundraising & Events</option>
+                                    </select>
+                                </div>
+                                <button class="btn btn-primary" style="width: 100%;">Apply to Volunteer</button>
+                            </div>
+                        </div>
+                        
+                        <div class="card fade-in">
+                            <div class="card-icon">📋</div>
+                            <h3>Apply for Support</h3>
+                            <p>If you or your community needs assistance through our programs, we encourage you to apply. We carefully review each application with prayer and consideration.</p>
+                            <div style="margin-top: 1rem;">
+                                <div class="form-group">
+                                    <label>Support Type:</label>
+                                    <select>
+                                        <option>Select Support Type</option>
+                                        <option>Educational Scholarship</option>
+                                        <option>Church Building/Support</option>
+                                        <option>Orphanage Support</option>
+                                        <option>Hospice Care Support</option>
+                                        <option>Business Microloan</option>
+                                        <option>Community Development</option>
+                                    </select>
+                                </div>
+                                <button class="btn btn-primary" style="width: 100%;">Apply for Support</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="content-section">
+                        <div class="card fade-in" style="background: var(--light-gold); text-align: center;">
+                            <h3>Corporate Partnerships</h3>
+                            <p>We welcome partnerships with businesses and organizations that share our vision of community transformation. Together, we can create greater impact and reach more communities in need.</p>
+                            <div class="cta-buttons" style="margin-top: 1.5rem;">
+                                <button class="btn btn-primary" onclick="showPage('contact')">Partner with Us</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="content-section">
+                        <h3 style="text-align: center; color: var(--primary-blue); margin-bottom: 2rem;">Other Ways to Help</h3>
+                        <div class="grid grid-4">
+                            <div class="card fade-in" style="text-align: center;">
+                                <div class="card-icon">📢</div>
+                                <h4>Spread the Word</h4>
+                                <p>Share our mission on social media and with your network.</p>
+                            </div>
+                            <div class="card fade-in" style="text-align: center;">
+                                <div class="card-icon">🙏</div>
+                                <h4>Pray for Us</h4>
+                                <p>Keep our work and beneficiaries in your prayers.</p>
+                            </div>
+                            <div class="card fade-in" style="text-align: center;">
+                                <div class="card-icon">🎁</div>
+                                <h4>Organize Fundraisers</h4>
+                                <p>Host events in your community to raise funds and awareness.</p>
+                            </div>
+                            <div class="card fade-in" style="text-align: center;">
+                                <div class="card-icon">💡</div>
+                                <h4>Share Ideas</h4>
+                                <p>Contribute innovative ideas for community development.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Latest Page -->
+        <div id="latest" class="page">
+            <section class="content-section">
+                <div class="container">
+                    <h2 class="section-title">Latest News & Updates</h2>
+                    
+                    <div class="list list-1">
+                        <div class="card fade-in">
+                            <h3>New Church Construction in Rural Ghana</h3>
+                            <p>We are excited to announce the completion of a new church building in the rural community of Akyem. This church will serve as a spiritual and community hub for over 500 families.</p>
+                            <p><strong>Date:</strong> January 15, 2025</p>
+                        </div>
+                        
+                        <div class="card fade-in">
+                            <h3>Scholarship Program Expansion</h3>
+                            <p>Thanks to generous donations, we have expanded our scholarship program to include vocational training for young adults. This will provide them with practical skills and job opportunities in their communities.</p>
+                            <p><strong>Date:</strong> February 5, 2025</p>
+                        </div>
+                        <div class="card fade-in">
+                            <h3>Microfinance Success Stories</h3>
+                            <p>Meet some of our successful microfinance beneficiaries who have started thriving businesses, creating jobs, and uplifting their communities. Read their inspiring stories on our website.</p>
+                            <p><strong>Date:</strong> March 1, 2025</p>
+                        </div>
+                        <div class="card fade-in">
+                            <h3>Upcoming Volunteer Opportunities</h3>
+                            <p>We are looking for passionate volunteers to join our upcoming projects in Ghana and Kenya. If you're interested in making a difference, apply on our website.</p>
+                            <p><strong>Date:</strong> March 20, 2025</p>
+                        </div>
+                    </div>  <!-- Add this closing div -->
+                </div>  <!-- Add this closing section -->
+            </section>
+        </div>
+
+        <!-- Contact Page -->
+        <div id="contact" class="page">
+            <section class="content-section">
+                <div class="container">
+                    <h2 class="section-title">Contact Us</h2>
+                    
+                    <div class="grid grid-2">
+                        <div class="card fade-in">
+                            <h3>Get in Touch</h3>
+                            <p>We'd love to hear from you! Whether you have questions about our programs, want to get involved, or need support, please don't hesitate to reach out.</p>
+                            
+                            <div style="margin-top: 2rem;">
+                                <h4 style="color: var(--primary-blue); margin-bottom: 1rem;">Headquarters</h4>
+                                <p><strong>📍 Address:</strong><br>
+                                Jireh Foundation<br>
+                                Accra, Greater Accra Region<br>
+                                Ghana, West Africa</p>
+                                
+                                <p><strong>📞 Phone:</strong> +233 XX XXX XXXX</p>
+                                <p><strong>📧 Email:</strong> info@jirehfoundation.org</p>
+                                <p><strong>🌐 Website:</strong> www.jirehfoundation.org</p>
+                            </div>
+                            
+                            <div style="margin-top: 2rem;">
+                                <h4 style="color: var(--primary-blue); margin-bottom: 1rem;">Office Hours</h4>
+                                <p><strong>Monday - Friday:</strong> 8:00 AM - 5:00 PM GMT<br>
+                                <strong>Saturday:</strong> 9:00 AM - 2:00 PM GMT<br>
+                                <strong>Sunday:</strong> Closed (Day of Rest)</p>
+                            </div>
+                        </div>
+                        
+                        <div class="card fade-in">
+                            <h3>Send Us a Message</h3>
+                            <form>
+                                <div class="form-group">
+                                    <label for="name" class="block mb-1">Name</label>
+                                    <input
+                                      type="text"
+                                      id="name"
+                                      class="w-full border rounded-md p-2"
+                                      placeholder="Your name"
+                                    />
+                                </div>
+                                <div class="form-group">
+                                    <label for="email" class="block mb-1">Email</label>
+                                    <input
+                                      type="email"
+                                      id="email"
+                                      class="w-full border rounded-md p-2"
+                                      placeholder="Your email"
+                                    />
+                                </div>
+                                <div class="form-group">
+                                    <label for="message" class="block mb-1">Message</label>
+                                    <textarea
+                                      id="message"
+                                      rows="4"
+                                      class="w-full border rounded-md p-2"
+                                      placeholder="Your message"
+                                    ></textarea>
+                                </div>
+                                <button
+                                  type="submit"
+                                  class="btn btn-primary text-white px-6 py-2 rounded-md hover:bg-primary-blue"
+                                    style="margin-top: 1rem; width: 100%;"
+                                  >
+                                  Send Message
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                    
+                    <div class="content-section">
+                        <div class="card fade-in" style="background: var(--light-blue); text-align: center;">
+                            <h3>Our Regional Offices</h3>
+                            <p>We have regional coordinators and partners in multiple countries. Contact our headquarters, and we'll connect you with the appropriate regional representative for your area.</p>
+                            <div class="grid grid-3" style="margin-top: 2rem; text-align: left;">
+                                <div>
+                                    <h4 style="color: var(--primary-blue);">West Africa</h4>
+                                    <p>Ghana, Nigeria, Sierra Leone, Liberia, Burkina Faso</p>
+                                </div>
+                                <div>
+                                    <h4 style="color: var(--primary-blue);">East Africa</h4>
+                                    <p>Kenya, Uganda, Tanzania, Ethiopia, Rwanda</p>
+                                </div>
+                                <div>
+                                    <h4 style="color: var(--primary-blue);">Asia-Pacific</h4>
+                                    <p>Philippines, India, Cambodia, Myanmar, Papua New Guinea</p>
+                                </div>
+                                <div>
+                                    <h4 style="color: var(--primary-blue);">Europe</h4>
+                                    <p>Germany, Spain, Luxembourg, Romania, Ukraine, Italy</p>
+                                </div>
+                                <div>
+                                    <h4 style="color: var(--primary-blue);">Middle East & North Africa (MENA)</h4>
+                                    <p>Lebanon, Israel, Syria, Libya, Jordan, Yemen, Morocco, Egypt</p>
+                                </div>   
+                                <div>
+                                    <h4 style="color: var(--primary-blue);">Latin America</h4>
+                                    <p>Mexico, El Salvador, Haiti, Ecuador, Jamaica, Peru, Argentina</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Donate Page -->
+        <div id="donate" class="page">
+    <section class="content-section">
+        <div class="container">
+            <h2 class="section-title">Donate</h2>
+            <div class="card fade-in" style="max-width: 600px; margin: 0 auto; text-align: center;">
+                <h3>Your Gift Transforms Lives</h3>
+                <p>Thank you for supporting Jireh Foundation. Your donation empowers communities through faith, education, social care, and economic opportunities.</p>
+                <form>
+                    <div class="form-group">
+                        <label>Donation Amount:</label>
+                        <select>
+                            <option>Select Amount</option>
+                            <option>$25 - Sponsor a child's meal for a month</option>
+                            <option>$50 - Provide school supplies for 5 children</option>
+                            <option>$100 - Support a small business startup</option>
+                            <option>$250 - Fund a scholarship for one semester</option>
+                            <option>$500 - Support church construction materials</option>
+                            <option>$1000 - Fund a year of education for one student</option>
+                            <option>Custom Amount</option>
+                        </select>
+                    </div>
+                    <button class="btn btn-primary" style="width: 100%;">Donate Now</button>
+                </form>
+                <p style="margin-top:1rem; color:var(--primary-blue);">Every gift makes a difference. God bless you!</p>
+            </div>
+        </div>
+    </section>
+</div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Jireh Foundation</h3>
+                    <p>Empowering lives, communities, and missions worldwide through education, skills training, social care, and financial assistance</p>
+                    <p style="margin-top: 1rem; font-style: italic;">"And my God will meet all your needs according to the riches of his glory in Christ Jesus."</p>
+                    <p style="margin-top: 0rem; font-style: italic;">(Philippians 4:19)</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li onclick="showPage('home')">Home</li>
+                        <li onclick="showPage('about')">Who We Are</li>
+                        <li onclick="showPage('programs')">Our Programs</li>
+                        <li onclick="showPage('impact')">Our Impact</li>
+                        <li onclick="showPage('stories')">Stories</li>
+                        <li onclick="showPage('get-involved')">Get Involved</li>                        
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Our Programs</h3>
+                    <ul>
+                        <li onclick="showPage('programs')">Church Building & Support</li>
+                        <li onclick="showPage('programs')">Educational Scholarships</li>
+                        <li onclick="showPage('programs')">Orphanages & Hospices</li>
+                        <li onclick="showPage('programs')">Business Microfinance</li>
+                        <li onclick="showPage('programs')">Community Development</li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Contact Info</h3>
+                    <p><strong>Address:</strong><br>
+                                Jireh Foundation<br>
+                                Avenue D West Close, North Legon<br>
+                                Accra, Ghana, West Africa</p>
+                                
+                                <p><strong>📞 </strong> +233 xx xxx xxxx</p>
+                                <p><strong>📧 </strong> info@jirehfoundation.org</p>
+                                <p><strong>🌐 </strong>www.jirehfoundation.org </p>
+                            </div>
+                <div class="footer-section">
+                    <h3>Connect with Us</h3>
+                    <p>Follow us on social media for updates on our work and impact stories: 
+        <a href="#" class="social-icon"><i class="fab fa-facebook"></i></a>
+        <a href="#" class="social-icon"><i class="fab fa-linkedin"></i></a>
+        <a href="#" class="social-icon"><i class="fab fa-x"></i></a>
+    </p>
+                </div>
+                <style>
+    .social-icon {
+        display: inline-block;
+        background: #1e40af; /* Blue background */
+        border-radius: 40%;
+        width: 24px;
+        height: 24px;
+        text-align: center;
+        line-height: 23px;
+        margin: 0 4px;
+        box-shadow: 0 5px 10px rgba(0,0,0,0.08);
+        transition: background 0.3s;
+    }
+    .social-icon i {
+        color: #fff; /* White icon */
+        font-size: 1rem;
+        vertical-align: middle;
+        transition: color 0.3s;
+    }
+    .social-icon:hover {
+        background: #3b82f6; /* Lighter blue on hover */
+    }
+    .social-icon:hover i {
+        color: #fff;
+    }
+</style>
+                <div class="footer-section">
+                    <h3>Our Office Hours</h3>
+                    <p><strong>Monday - Friday:</strong> 8AM - 5PM GMT<br>
+                                <strong>Saturday:</strong> 9:00 AM - 2:00 PM GMT<br>
+                                <strong>Sunday:</strong> Closed (Day of Rest)</p>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+    <p>&copy; 2025 Jireh Foundation. All rights reserved. | A Christian non-profit organization serving communities worldwide</p>
+</div>
+        </div>
+    </footer>
+
+    <script>
+        // Page Navigation with Hash for Forward/Backward Support
+    function showPage(pageId, pushState = true) {
+        // Hide all pages
+        const pages = document.querySelectorAll('.page');
+        pages.forEach(page => page.classList.remove('active'));
+
+        // Show selected page
+        const page = document.getElementById(pageId);
+        if (page) page.classList.add('active');
+
+        // Update active nav item
+        const navItems = document.querySelectorAll('.nav-item');
+        navItems.forEach(item => item.classList.remove('active'));
+
+        // Find and activate corresponding nav item
+        const navTexts = {
+            'home': 'Home',
+            'about': 'Who We Are',
+            'programs': 'What We Do',
+            'impact': 'Our Impact',
+            'stories': 'Stories',
+            'get-involved': 'Get Involved',
+            'latest': 'Latest',
+            'donate': 'Donate',
+            'contact': 'Contact'
+        };
+        navItems.forEach(item => {
+            if (item.textContent.trim() === navTexts[pageId]) {
+                item.classList.add('active');
+            }
+        });
+
+        // Scroll to top
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+
+        // Close mobile menu if open
+        document.getElementById('nav-menu').classList.remove('active');
+
+        // Trigger fade-in animations
+        setTimeout(() => {
+            triggerFadeInAnimations();
+        }, 100);
+
+        // Update hash in URL for navigation
+        if (pushState) {
+            window.location.hash = pageId;
+        }
+    }
+
+    // Listen for hash changes (back/forward navigation)
+    window.addEventListener('hashchange', function() {
+        const pageId = window.location.hash.replace('#', '') || 'home';
+        showPage(pageId, false);
+    });
+
+    // On initial load, show correct page
+    document.addEventListener('DOMContentLoaded', function() {
+        const initialPage = window.location.hash.replace('#', '') || 'home';
+        showPage(initialPage, false);
+
+        // Form submission handler
+        const forms = document.querySelectorAll('form');
+        forms.forEach(form => {
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                alert('Thank you for your message! We will get back to you within 24-48 hours. God bless you!');
+                form.reset();
+            });
+        });
+
+        triggerFadeInAnimations();
+
+        // Animate counters when stats section is visible
+        const statsSection = document.querySelector('.stats-section');
+        if (statsSection) {
+            const statsObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        animateCounters();
+                        statsObserver.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.5 });
+
+            statsObserver.observe(statsSection);
+        }
+    });
+
+    // Update nav-item click handlers to use hash navigation
+    document.querySelectorAll('.nav-item').forEach(item => {
+        item.onclick = function() {
+            const text = item.textContent.trim();
+            const navMap = {
+                'Home': 'home',
+                'Who We Are': 'about',
+                'What We Do': 'programs',
+                'Our Impact': 'impact',
+                'Stories': 'stories',
+                'Get Involved': 'get-involved',
+                'Latest': 'latest',
+                'Donate': 'donate', // Now points to the new donate page
+                'Contact': 'contact'
+            };
+            const pageId = navMap[text] || 'home';
+            window.location.hash = pageId;
+        };
+    });
+
+        // Mobile Menu Toggle
+        function toggleMobileMenu() {
+            const navMenu = document.getElementById('nav-menu');
+            navMenu.classList.toggle('active');
+        }
+
+        // Fade-in Animation Observer
+        function triggerFadeInAnimations() {
+            const fadeElements = document.querySelectorAll('.fade-in');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            });
+
+            fadeElements.forEach(element => {
+                element.classList.remove('visible');
+                observer.observe(element);
+            });
+        }
+
+        // Counter Animation for Stats
+        function animateCounters() {
+            const counters = document.querySelectorAll('.stat-number');
+            
+            counters.forEach(counter => {
+                const target = parseInt(counter.textContent.replace(/[^0-9]/g, ''));
+                const originalText = counter.textContent;
+                let count = 0;
+                const increment = target / 100;
+                
+                const timer = setInterval(() => {
+                    count += increment;
+                    if (count >= target) {
+                        counter.textContent = originalText;
+                        clearInterval(timer);
+                    } else {
+                        const currentNum = Math.floor(count);
+                        if (originalText.includes('+')) {
+                            counter.textContent = currentNum + '+';
+                        } else {
+                            counter.textContent = currentNum;
+                        }
+                    }
+                }, 20);
+            });
+        }
+
+        // Form Submission Handler
+        document.addEventListener('DOMContentLoaded', function() {
+            const forms = document.querySelectorAll('form');
+            
+            forms.forEach(form => {
+                form.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    alert('Thank you for your message! We will get back to you within 24-48 hours. God bless you!');
+                    form.reset();
+                });
+            });
+            
+            // Initialize animations
+            triggerFadeInAnimations();
+            
+            // Animate counters when stats section is visible
+            const statsSection = document.querySelector('.stats-section');
+            if (statsSection) {
+                const statsObserver = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            animateCounters();
+                            statsObserver.unobserve(entry.target);
+                        }
+                    });
+                }, { threshold: 0.5 });
+                
+                statsObserver.observe(statsSection);
+            }
+        });
+
+        // Smooth scrolling for anchor links
+        document.addEventListener('click', function(e) {
+            if (e.target.matches('a[href^="#"]')) {
+                e.preventDefault();
+                const target = document.querySelector(e.target.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            }
+        });
+
+        // Header scroll effect
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('.header');
+            if (window.scrollY > 100) {
+                header.style.background = 'linear-gradient(135deg, rgba(30, 64, 175, 0.95), rgba(59, 130, 246, 0.95))';
+                header.style.backdropFilter = 'blur(10px)';
+            } else {
+                header.style.background = 'linear-gradient(135deg, var(--primary-blue), var(--secondary-blue))';
+                header.style.backdropFilter = 'none';
+            }
+        });
+
+        // Button click handlers for donations and applications
+document.addEventListener('click', function(e) {
+    if (e.target.textContent === 'Donate Now') {
+        alert('Thank you for your heart to give! You will be redirected to our secure donation portal. Every gift makes a difference in transforming lives worldwide.');
+    }
+    
+    if (e.target.textContent === 'Apply to Volunteer') {
+        showVolunteerForm();
+    }
+    
+    if (e.target.textContent === 'Apply for Support') {
+        showSupportForm();
+    }
+});
+
+// Create volunteer application form
+function showVolunteerForm() {
+    const formHTML = `
+        <div id="volunteerFormOverlay" style="
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        ">
+            <div style="
+                background: white;
+                padding: 30px;
+                border-radius: 10px;
+                max-width: 500px;
+                width: 90%;
+                max-height: 80vh;
+                overflow-y: auto;
+                box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            ">
+                <h2 style="color: #2c3e50; margin-bottom: 20px; text-align: center;">Volunteer Application</h2>
+                <form id="volunteerForm">
+                    <div style="margin-bottom: 15px;">
+                        <label style="display: block; margin-bottom: 5px; font-weight: bold;">Full Name *</label>
+                        <input type="text" name="fullName" required style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 4px;">
+                    </div>
+                    
+                    <div style="margin-bottom: 15px;">
+                        <label style="display: block; margin-bottom: 5px; font-weight: bold;">Email *</label>
+                        <input type="email" name="email" required style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 4px;">
+                    </div>
+                    
+                    <div style="margin-bottom: 15px;">
+                        <label style="display: block; margin-bottom: 5px; font-weight: bold;">Phone Number</label>
+                        <input type="tel" name="phone" style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 4px;">
+                    </div>
+                    
+                    <div style="margin-bottom: 15px;">
+                        <label style="display: block; margin-bottom: 5px; font-weight: bold;">Age</label>
+                        <input type="number" name="age" min="16" max="100" style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 4px;">
+                    </div>
+                    
+                    <div style="margin-bottom: 15px;">
+                        <label style="display: block; margin-bottom: 5px; font-weight: bold;">Areas of Interest *</label>
+                        <div style="display: flex; flex-wrap: wrap; gap: 10px;">
+                            <label style="display: flex; align-items: center; font-weight: normal;">
+                                <input type="checkbox" name="interests" value="youth-mentoring" style="margin-right: 5px;">
+                                Youth Mentoring
+                            </label>
+                            <label style="display: flex; align-items: center; font-weight: normal;">
+                                <input type="checkbox" name="interests" value="community-outreach" style="margin-right: 5px;">
+                                Community Outreach
+                            </label>
+                            <label style="display: flex; align-items: center; font-weight: normal;">
+                                <input type="checkbox" name="interests" value="event-planning" style="margin-right: 5px;">
+                                Event Planning
+                            </label>
+                            <label style="display: flex; align-items: center; font-weight: normal;">
+                                <input type="checkbox" name="interests" value="administrative" style="margin-right: 5px;">
+                                Administrative Support
+                            </label>
+                            <label style="display: flex; align-items: center; font-weight: normal;">
+                                <input type="checkbox" name="interests" value="fundraising" style="margin-right: 5px;">
+                                Fundraising
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div style="margin-bottom: 15px;">
+                        <label style="display: block; margin-bottom: 5px; font-weight: bold;">Availability</label>
+                        <select name="availability" style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 4px;">
+                            <option value="">Select availability</option>
+                            <option value="weekdays">Weekdays</option>
+                            <option value="weekends">Weekends</option>
+                            <option value="evenings">Evenings</option>
+                            <option value="flexible">Flexible</option>
+                        </select>
+                    </div>
+                    
+                    <div style="margin-bottom: 20px;">
+                        <label style="display: block; margin-bottom: 5px; font-weight: bold;">Why do you want to volunteer with us?</label>
+                        <textarea name="motivation" rows="4" style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 4px; resize: vertical;"></textarea>
+                    </div>
+                    
+                    <div style="display: flex; gap: 10px; justify-content: center;">
+                        <button type="submit" style="
+                            background: #27ae60;
+                            color: white;
+                            padding: 10px 20px;
+                            border: none;
+                            border-radius: 5px;
+                            cursor: pointer;
+                            font-size: 16px;
+                        ">Submit Application</button>
+                        <button type="button" onclick="closeForm('volunteerFormOverlay')" style="
+                            background: #95a5a6;
+                            color: white;
+                            padding: 10px 20px;
+                            border: none;
+                            border-radius: 5px;
+                            cursor: pointer;
+                            font-size: 16px;
+                        ">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    `;
+    
+    document.body.insertAdjacentHTML('beforeend', formHTML);
+    
+    // Handle form submission
+    document.getElementById('volunteerForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const formData = new FormData(e.target);
+        const interests = Array.from(document.querySelectorAll('input[name="interests"]:checked')).map(cb => cb.value);
+        
+        alert(`Thank you for your volunteer application, ${formData.get('fullName')}! We'll review your application and contact you within 24 hours.`);
+        closeForm('volunteerFormOverlay');
+    });
+}
+
+// Create support application form
+function showSupportForm() {
+    const formHTML = `
+        <div id="supportFormOverlay" style="
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        ">
+            <div style="
+                background: white;
+                padding: 30px;
+                border-radius: 10px;
+                max-width: 500px;
+                width: 90%;
+                max-height: 80vh;
+                overflow-y: auto;
+                box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            ">
+                <h2 style="color: #2c3e50; margin-bottom: 20px; text-align: center;">Support Application</h2>
+                <form id="supportForm">
+                    <div style="margin-bottom: 15px;">
+                        <label style="display: block; margin-bottom: 5px; font-weight: bold;">Full Name *</label>
+                        <input type="text" name="fullName" required style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 4px;">
+                    </div>
+                    
+                    <div style="margin-bottom: 15px;">
+                        <label style="display: block; margin-bottom: 5px; font-weight: bold;">Email *</label>
+                        <input type="email" name="email" required style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 4px;">
+                    </div>
+                    
+                    <div style="margin-bottom: 15px;">
+                        <label style="display: block; margin-bottom: 5px; font-weight: bold;">Phone Number *</label>
+                        <input type="tel" name="phone" required style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 4px;">
+                    </div>
+                    
+                    <div style="margin-bottom: 15px;">
+                        <label style="display: block; margin-bottom: 5px; font-weight: bold;">Age</label>
+                        <input type="number" name="age" min="1" max="120" style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 4px;">
+                    </div>
+                    
+                    <div style="margin-bottom: 15px;">
+                        <label style="display: block; margin-bottom: 5px; font-weight: bold;">Type of Support Needed *</label>
+                        <select name="supportType" required style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 4px;">
+                            <option value="">Select support type</option>
+                            <option value="church-support">Church Construction/Renovation/Support</option>
+                            <option value="educational-support">Educational Support</option>
+                            <option value="skills-training">Skills Training</option>
+                            <option value="orphanage-support">Orphanage Support</option>
+                            <option value="hospice care">Hospice Care</option>
+                            <option value="microloan">Business Microloan</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    
+                    <div style="margin-bottom: 15px;">
+                        <label style="display: block; margin-bottom: 5px; font-weight: bold;">Urgency Level</label>
+                        <select name="urgency" style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 4px;">
+                            <option value="">Select urgency</option>
+                            <option value="immediate">Immediate (within 24 hours)</option>
+                            <option value="urgent">Urgent (within 1 week)</option>
+                            <option value="moderate">Moderate (within 1 month)</option>
+                            <option value="low">Low priority (</option>
+                        </select>
+                    </div>
+
+                    <div style="margin-bottom: 20px;">
+                        <label style="display: block; margin-bottom: 5px; font-weight: bold;">Please describe your situation and specific needs *</label>
+                        <textarea name="description" rows="5" required style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 4px; resize: vertical;" placeholder="Please provide details about your current situation and the specific support you're seeking..."></textarea>
+                    </div>
+                    
+                    <div style="margin-bottom: 20px;">
+                        <label style="display: flex; align-items: center; font-weight: normal;">
+                            <input type="checkbox" name="consent" required style="margin-right: 8px;">
+                            I consent to being contacted by the organization and understand that my information will be kept confidential.
+                        </label>
+                    </div>
+                    
+                    <div style="display: flex; gap: 10px; justify-content: center;">
+                        <button type="submit" style="
+                            background: #3498db;
+                            color: white;
+                            padding: 10px 20px;
+                            border: none;
+                            border-radius: 5px;
+                            cursor: pointer;
+                            font-size: 16px;
+                        ">Submit Application</button>
+                        <button type="button" onclick="closeForm('supportFormOverlay')" style="
+                            background: #95a5a6;
+                            color: white;
+                            padding: 10px 20px;
+                            border: none;
+                            border-radius: 5px;
+                            cursor: pointer;
+                            font-size: 16px;
+                        ">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    `;
+    
+    document.body.insertAdjacentHTML('beforeend', formHTML);
+    
+    // Handle form submission
+    document.getElementById('supportForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const formData = new FormData(e.target);
+        
+        alert(`Thank you for your support application, ${formData.get('fullName')}! Our team will review your request and contact you within 24 hours. We're here to help.`);
+        closeForm('supportFormOverlay');
+    });
+}
+
+// Function to close forms
+function closeForm(formId) {
+    const form = document.getElementById(formId);
+    if (form) {
+        form.remove();
+    }
+}
+
+        function showContactInfo() {
+    // Create modal or popup
+    const modal = document.createElement('div');
+    modal.className = 'contact-modal';
+    modal.innerHTML = `
+                    <label for="name">Name</label>
+                    <input type="text" id="name" placeholder="Your name">
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" placeholder="Your email">
+                </div>
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" rows="4" placeholder="Your message"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Send Message</button>
+            </form>
+        </div>
+    `;
+    document.body.appendChild(modal);
+}
+
+function closeModal() {
+    const modal = document.querySelector('.contact-modal');
+    if (modal) {
+        modal.remove();
+    }
+}
+    </script>
+</body>
+</html>
