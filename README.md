@@ -1,1 +1,1 @@
-# jirehinternational.github.io
+https://jireh-inter.github.io/ji/ 
